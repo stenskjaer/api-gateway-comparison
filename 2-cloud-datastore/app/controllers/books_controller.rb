@@ -11,15 +11,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START index]
 class BooksController < ApplicationController
 
   PER_PAGE = 10
 
+  # [START index]
   def index
     @books, @cursor = Book.query limit: PER_PAGE, cursor: params[:cursor]
   end
-# [END index]
+  # [END index]
 
   def new
     @book = Book.new

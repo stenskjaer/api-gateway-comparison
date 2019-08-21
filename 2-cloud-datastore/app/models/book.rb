@@ -26,7 +26,6 @@ class Book
                      database_configuration[Rails.env]["dataset_id"]
     )
   end
-# [END book_class]
 
   # [START query]
   # Query Book entities from Cloud Datastore.
@@ -132,3 +131,4 @@ class Book
     id.present?
   end
 end
+# [END book_class]
