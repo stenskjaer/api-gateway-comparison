@@ -49,6 +49,14 @@ class Book
   end
   # [END query]
 
+  def self.all
+    query = Google::Cloud::Datastore::Query.new
+    query.kind "Book"
+
+    results = dataset.run query
+    results.map {|entity| Book.from_entity entity }
+  end
+
   # [START from_entity]
   def self.from_entity entity
     book = Book.new

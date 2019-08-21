@@ -20,5 +20,19 @@ Rails.application.routes.draw do
   # Restful routes for BooksController
   resources :books
 
+  scope "/api" do
+    scope "/v1" do
+      scope "/books" do
+        get "/" => "api_books#list"
+        scope "/:id" do
+          get "/" => "api_books#show"
+        end
+        scope "/:title" do 
+          get "/" => "api_books#search_title"
+        end
+      end
+    end
+  end
+
 end
 # [END routes]
