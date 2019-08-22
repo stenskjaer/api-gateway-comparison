@@ -24,12 +24,7 @@ Rails.application.routes.draw do
     scope "/v1" do
       scope "/books" do
         get "/" => "api_books#list"
-        scope "/:id" do
-          get "/" => "api_books#show"
-        end
-        scope "/:title" do 
-          get "/" => "api_books#search_title"
-        end
+        get "/:id" => "api_books#show"
       end
     end
   end
