@@ -1,4 +1,21 @@
-# Ruby Getting Started
+
+# API gateway experiments
+
+The purpose of the repository is to experiment with different ways of setting up
+and exposing API endpoints for an application.
+
+
+# History of this repository: Ruby Getting Started
+
+This repository is based off of Google's [repository for getting started with Ruby
+on Rails on GCP App
+Engine](https://github.com/GoogleCloudPlatform/ruby-docs-samples). See also [the
+guide associated with the original
+repository](https://cloud.google.com/endpoints/docs/openapi/get-started-app-engine). 
+
+The readme relevant for the part of the codebase that is preserved here is given
+below. It gives some notes for how to setup the Cloud Datastore database
+connection.
 
 ## Datastore
 Checkout branches to view particular steps of this sample application.
