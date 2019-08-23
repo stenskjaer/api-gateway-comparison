@@ -15,7 +15,4 @@
 runtime: ruby
 env: flex
 entrypoint: bundle exec rackup -p $PORT
-endpoints_api_service:
-  name: cx-mschristensen-ruby.appspot.com
-  rollout_strategy: managed
 # [END runtime]
