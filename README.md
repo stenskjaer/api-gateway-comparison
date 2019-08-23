@@ -1,18 +1,34 @@
-# Getting Started Ruby
+# Ruby Getting Started
 
+## Datastore
 Checkout branches to view particular steps of this sample application.
 
- - [`1-hello-world`](1-hello-world)
- - [`2-cloud-datastore`](2-cloud-datastore)
- - [`2-cloud-sql`](2-cloud-sql)
- - [`2-postgresql`](2-postgresql)
- - [`3-cloud-storage`](3-cloud-storage)
- - [`4-auth`](4-auth)
- - [`5-logging`](5-logging)
- - [`6-task-queueing`](6-task-queueing)
- - [`7-compute-engine`](7-compute-engine)
+ - `1-hello-world`
+ - `2-sql-database`
+ - `2-datastore`
+ - `3-files`
+ - `4-auth`
+ - `5-logging (?)` *(hello world has logging enabled)*
+ - `6-task-queueing`
+ - `7-compute-engine`
 
-[Ruby on Rails][ror] web application on [Google Managed VMs][mvms].
+[Ruby on Rails][ror] web application on [Google App Engine flexible environment][fevm].
+
+### Dependencies
+
+To run the Bookshelf app, first ensure that you have a [stable version][rstable] of Ruby.
+
+For information on installing Ruby, view [Installing Ruby][] on the [Ruby website][].
+
+If you are using a system version of ruby, you will need to use `sudo` to install gems.
+
+To install gems locally for your user, add the following to your `~/.bashrc` or `~/.bash_profile`:
+
+    export GEM_HOME="$HOME/.gems"
+    export GEM_PATH="$HOME/.gems"
+    export PATH="$GEM_PATH/bin:$PATH"
+
+Or gems can be installed using the [`--user-install` flag][user-install].
 
 ### Run
 
@@ -27,25 +43,18 @@ And then run the Rails web server:
 ### To run the tests
 
     $ bundle install
-    $ bundle exec rspec
+    $ rspec spec/
 
 ### To deploy to App Engine Managed VMs
 
-Install the [Google Cloud SDK](https://cloud.google.com/sdk):
-
-    $ curl https://sdk.cloud.google.com | bash
-
-And then deploy the application:
-
     $ gcloud app deploy
 
-The application Dockerfile uses the [`google/ruby-runtime`][runtime] Docker image
-which supports running any Ruby web application.
-
-The `ruby-runtime` image requires that your application directory contain the following:
-
- - `Gemfile` file declaring application dependencies
- - `config.ru` rackup file defining your web application
+[ror]: http://rubyonrails.org/
+[fevm]: https://cloud.google.com/appengine/docs/flexible/
+[Installing Ruby]: https://www.ruby-lang.org/en/documentation/installation/
+[Ruby website]: https://www.ruby-lang.org
+[rstable]: https://www.ruby-lang.org/en/downloads/
+[user-install]: http://guides.rubygems.org/faqs/#user-install
 
 ## Contributing changes
 
@@ -54,7 +63,3 @@ The `ruby-runtime` image requires that your application directory contain the fo
 ## Licensing
 
 * See [LICENSE](LICENSE)
-
-[ror]: http://rubyonrails.org/
-[mvms]: https://cloud.google.com/appengine/docs/managed-vms/
-[runtime]: https://registry.hub.docker.com/u/google/ruby-runtime/
