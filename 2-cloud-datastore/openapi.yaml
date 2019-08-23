@@ -1,7 +1,7 @@
 # [START swagger]
 swagger: "2.0"
 info:
-  description: "A simple Google Cloud Endpoints API example."
+  description: "A Swagger definition for our Bookshelf API example."
   title: "Bookshelf API"
   version: "1.0.0"
 host: "cx-mschristensen-ruby.appspot.com"
@@ -12,6 +12,7 @@ produces:
 - "application/json"
 schemes:
 - "https"
+
 basePath: "/api/v1"
 paths:
   "/books":
@@ -24,7 +25,7 @@ paths:
         200:
           description: "Books"
           schema:
-            $ref: "#/definitions/booksResponse"
+            $ref: "#/definitions/AllBooksResponse"
       security:
       - api_key: []
   "/books/{id}":
@@ -43,11 +44,25 @@ paths:
         200:
           description: "Book"
           schema:
-            $ref: "#/definitions/showBookResponse"
+            $ref: "#/definitions/BookResponse"
       security:
       - api_key: []
+
 definitions:
-  booksResponse:
+  Book:
+    type: "object"
+    properties: 
+      id:
+        type: "integer"
+      title:
+        type: "string"
+      published_on:
+        type: "string"
+      author:
+        type: "string"
+      description:
+        type: "string"
+  AllBooksResponse:
     type: "object"
     properties:
       status:
@@ -55,36 +70,14 @@ definitions:
       data:
         type: "array"
         items: 
-          type: "object"
-          properties: 
-            id:
-              type: "integer"
-            title:
-              type: "string"
-            published_on:
-              type: "string"
-            author:
-              type: "string"
-            description:
-              type: "string"
-  showBookResponse:
+          $ref: "#/definitions/Book"          
+  BookResponse:
     type: "object"
     properties:
       status:
         type: "string"
       data:
-        type: "object"
-        properties: 
-          id:
-            type: "integer"
-          title:
-            type: "string"
-          published_on:
-            type: "string"
-          author:
-            type: "string"
-          description:
-            type: "string"
+        $ref: "#/definitions/Book"
 
 securityDefinitions:
   # This section configures basic authentication with an API key.
@@ -92,28 +85,3 @@ securityDefinitions:
     type: "apiKey"
     name: "key"
     in: "header"
-  # This section configures authentication using Google API Service Accounts
-  # to sign a json web token. This is mostly used for server-to-server
-  # communication.
-  google_jwt:
-    authorizationUrl: ""
-    flow: "implicit"
-    type: "oauth2"
-    # This must match the 'iss' field in the JWT.
-    x-google-issuer: "jwt-client.endpoints.sample.google.com"
-    # Update this with your service account's email address.
-    x-google-jwks_uri: "https://www.googleapis.com/service_accounts/v1/jwk/YOUR-SERVICE-ACCOUNT-EMAIL"
-    # This must match the "aud" field in the JWT. You can add multiple
-    # audiences to accept JWTs from multiple clients.
-    x-google-audiences: "echo.endpoints.sample.google.com"
-  # This section configures authentication using Google OAuth2 ID Tokens.
-  # ID Tokens can be obtained using OAuth2 clients, and can be used to access
-  # your API on behalf of a particular user.
-  google_id_token:
-    authorizationUrl: ""
-    flow: "implicit"
-    type: "oauth2"
-    x-google-issuer: "https://accounts.google.com"
-    # Your OAuth2 client's Client ID must be added here. You can add
-    # multiple client IDs to accept tokens from multiple clients.
-    x-google-audiences: "YOUR-CLIENT-ID"
