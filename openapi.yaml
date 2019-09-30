@@ -84,4 +84,4 @@ securityDefinitions:
   api_key:
     type: "apiKey"
     name: "key"
-    in: "header"
+    in: "query"
